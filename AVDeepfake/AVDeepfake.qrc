@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/AVDeepfake">
+        <file alias="appLogo">Resource/appLogo.png</file>
+        <file alias="appTitle">Resource/AppTitle.png</file>
+        <file alias="AuChange">Resource/AuChange.png</file>
+        <file alias="AuDetection">Resource/AuDetection.png</file>
+        <file alias="AuGE">Resource/AuGE.png</file>
+        <file alias="dashboard">Resource/dashboard.png</file>
+        <file alias="history">Resource/history.png</file>
+        <file alias="ViChange">Resource/ViChange.png</file>
+        <file alias="ViCheck">Resource/ViCheck.png</file>
+        <file alias="ViGe">Resource/ViGe.png</file>
+        <file alias="voice">Resource/voice.png</file>
+    </qresource>
+</RCC>
