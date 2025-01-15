@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>5.15.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;multimedia;widgets;multimediawidgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -67,7 +67,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Qt\5.15.2\msvc2019_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Qt\5.15.2\msvc2019_64\include;D:\Qt\5.15.2\msvc2019_64\include\QtMultimedia;D:\Qt\5.15.2\msvc2019_64\include\QtMultimediaWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -99,6 +99,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioDetectionPage.cpp" />
+    <ClCompile Include="AudioGenerationPage.cpp" />
+    <ClCompile Include="AudioModificationPage.cpp" />
+    <ClCompile Include="VideoDetectionPage.cpp" />
+    <ClCompile Include="VideoGenerationPage.cpp" />
+    <ClCompile Include="VideoModificationPage.cpp" />
     <QtRcc Include="AVDeepfake.qrc" />
     <QtUic Include="AVDeepfake.ui" />
     <QtMoc Include="AVDeepfake.h" />
@@ -108,6 +114,14 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CardWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="AudioDetectionPage.h" />
+    <QtMoc Include="AudioGenerationPage.h" />
+    <QtMoc Include="AudioModificationPage.h" />
+    <QtMoc Include="VideoDetectionPage.h" />
+    <QtMoc Include="VideoGenerationPage.h" />
+    <QtMoc Include="VideoModificationPage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

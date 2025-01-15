@@ -27,6 +27,12 @@
     <Filter Include="Source Files\components">
       <UniqueIdentifier>{c8bdfdce-0b0c-4c01-bf65-6e6f07142ec6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\page">
+      <UniqueIdentifier>{dcea4b78-5881-47a0-8961-91ab19fb88a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\page">
+      <UniqueIdentifier>{807d676f-5dc5-4d9f-b51c-430030a4a416}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AVDeepfake.qrc">
@@ -49,10 +55,46 @@
     <ClCompile Include="CardWidget.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
+    <ClCompile Include="VideoGenerationPage.cpp">
+      <Filter>Source Files\page</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoModificationPage.cpp">
+      <Filter>Source Files\page</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoDetectionPage.cpp">
+      <Filter>Source Files\page</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioGenerationPage.cpp">
+      <Filter>Source Files\page</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioModificationPage.cpp">
+      <Filter>Source Files\page</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioDetectionPage.cpp">
+      <Filter>Source Files\page</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CardWidget.h">
       <Filter>Header Files\components</Filter>
+    </QtMoc>
+    <QtMoc Include="VideoModificationPage.h">
+      <Filter>Header Files\page</Filter>
+    </QtMoc>
+    <QtMoc Include="VideoDetectionPage.h">
+      <Filter>Header Files\page</Filter>
+    </QtMoc>
+    <QtMoc Include="AudioGenerationPage.h">
+      <Filter>Header Files\page</Filter>
+    </QtMoc>
+    <QtMoc Include="AudioModificationPage.h">
+      <Filter>Header Files\page</Filter>
+    </QtMoc>
+    <QtMoc Include="AudioDetectionPage.h">
+      <Filter>Header Files\page</Filter>
+    </QtMoc>
+    <QtMoc Include="VideoGenerationPage.h">
+      <Filter>Header Files\page</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>
