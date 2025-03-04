@@ -7,10 +7,8 @@
 #include <QWidget>
 #include <QStackedWidget>
 
-#include "VideoGenerationPage.h"
 #include "VideoModificationPage.h"
 #include "VideoDetectionPage.h"
-#include "AudioGenerationPage.h"
 #include "AudioModificationPage.h"
 #include "AudioDetectionPage.h"
 
@@ -26,7 +24,6 @@ public:
 public slots:
     void handleCardClick(int index);
     void goToHomePage();
-    
 
 private:
     QListWidget* leftBar;     // ×ó²àÀ¸

@@ -12,8 +12,11 @@ AVDeepfake::AVDeepfake(QWidget* parent)
 {
     // 设置主窗口标题和大小
     this->setWindowTitle("AVDeepfake");
-    this->setFixedSize(2050, 1300);
-    //this->setStyleSheet("background-color: white;");
+    //this->setFixedSize(1900, 900);
+    this->setFixedSize(1280, 720);
+
+
+
     // ===== 导航按钮样式 =====
     QString buttonStyle = R"(
         QPushButton {
@@ -81,8 +84,8 @@ AVDeepfake::AVDeepfake(QWidget* parent)
     // 将左侧栏添加到主布局
     leftBar = new QListWidget(this);
     leftBar->setStyleSheet("margin-top: 21px;");
-    leftBar->setMinimumWidth(400);
-    leftBar->setMaximumWidth(400);
+    leftBar->setMinimumWidth(230);
+    leftBar->setMaximumWidth(230);
     leftBar->setLayout(leftBarLayout);
 
     // ===== 创建滚动区域 =====
@@ -99,24 +102,19 @@ AVDeepfake::AVDeepfake(QWidget* parent)
 
     // 定义图标路径和文字描述数组
     const QStringList iconPaths = {
-        ":/AVDeepfake/ViGe",
         ":/AVDeepfake/ViChange",
-        ":/AVDeepfake/ViCheck",
-        ":/AVDeepfake/AuGE",
+        ":/AVDeepfake/ViDetection",
         ":/AVDeepfake/AuChange",
         ":/AVDeepfake/AuDetection"
     };
 
     const QStringList titles = {
-        u8"视频生成", u8"视频篡改", u8"视频检测",
-        u8"音频生成", u8"音频篡改", u8"音频检测"
+        u8"视频篡改",u8"视频检测", u8"音频篡改", u8"音频检测"
     };
 
     const QStringList descriptions = {
-        u8"生成高质量的视频内容。",
         u8"对视频内容进行篡改处理。",
-        u8"检测视频中的篡改痕迹。",
-        u8"生成高质量的音频内容。",
+        u8"对视频内容进行检测处理。",
         u8"对音频内容进行篡改处理。",
         u8"检测音频中的篡改痕迹。"
     };
@@ -132,9 +130,9 @@ AVDeepfake::AVDeepfake(QWidget* parent)
         int index = i; // 捕获当前索引
         connect(card, &CardWidget::cardClicked, this, [this, index]() {
             handleCardClick(index); // 传递当前卡片的索引
-        });
+            });
 
-        if (i < 3) {
+        if (i < 2) {
             firstRowLayout->addWidget(card);
         }
         else {
@@ -167,30 +165,27 @@ AVDeepfake::AVDeepfake(QWidget* parent)
 
     stackedWidget->addWidget(mainPage);
 
-    // 创建并加载6个独立页面
-    pages[0] = new VideoGenerationPage(this);
+    pages[0] = new VideoModificationPage(this);
     pages[1] = new VideoModificationPage(this);
-    pages[2] = new VideoDetectionPage(this);
-    pages[3] = new AudioGenerationPage(this);
-    pages[4] = new AudioModificationPage(this);
-    pages[5] = new AudioDetectionPage(this);
+    pages[2] = new AudioModificationPage(this);
+    pages[3] = new AudioDetectionPage(this);
 
-    for     (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 4; ++i) {
         stackedWidget->addWidget(pages[i]);
     }
 
     // 监听页面切换
     connect(stackedWidget, &QStackedWidget::currentChanged, this, [this](int index) {
         // 如果离开了 VideoModificationPage 页面，则停止播放器
-        if (stackedWidget->currentWidget() != pages[1]) {
-            static_cast<VideoModificationPage*>(pages[1])->stopPlayer();
+        if (stackedWidget->currentWidget() != pages[0]) {
+            static_cast<VideoModificationPage*>(pages[0])->stopPlayer();
         }
-        if (stackedWidget->currentWidget() == pages[1]) {
-            static_cast<VideoModificationPage*>(pages[1])->startPlayer();
+        if (stackedWidget->currentWidget() == pages[0]) {
+            static_cast<VideoModificationPage*>(pages[0])->startPlayer();
         }
-    });
+        });
 
-    connect(pages[1], SIGNAL(backToHome()), this, SLOT(goToHomePage()));
+    connect(pages[0], SIGNAL(backToHome()), this, SLOT(goToHomePage()));
 
 
     setCentralWidget(stackedWidget);
@@ -204,7 +199,7 @@ AVDeepfake::~AVDeepfake()
 // AVDeepfake.cpp
 void AVDeepfake::handleCardClick(int index)
 {
-    if (index >= 0 && index < 6) {
+    if (index == 3) {
         stackedWidget->setCurrentWidget(pages[index]);
     }
 }

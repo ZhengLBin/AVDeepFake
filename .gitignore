@@ -361,3 +361,15 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+
+# 忽略解决方案文件 AVDeepfake.sln
+AVDeepfake.sln
+
+# 忽略 AVDeepfake 目录下的 x64 文件夹
+AVDeepfake/x64/
+
+# 忽略 AVDeepfake 目录下的特定项目文件
+AVDeepfake/AVDeepfake.vcxproj
+AVDeepfake/AVDeepfake.vcxproj.filters
+AVDeepfake/AVDeepfake.vcxproj.user

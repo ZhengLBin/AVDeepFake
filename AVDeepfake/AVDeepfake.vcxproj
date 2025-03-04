@@ -102,6 +102,7 @@
     <ClCompile Include="AudioDetectionPage.cpp" />
     <ClCompile Include="AudioGenerationPage.cpp" />
     <ClCompile Include="AudioModificationPage.cpp" />
+    <ClCompile Include="RecordingDialog.cpp" />
     <ClCompile Include="VideoDetectionPage.cpp" />
     <ClCompile Include="VideoGenerationPage.cpp" />
     <ClCompile Include="VideoModificationPage.cpp" />
@@ -122,6 +123,9 @@
     <QtMoc Include="VideoDetectionPage.h" />
     <QtMoc Include="VideoGenerationPage.h" />
     <QtMoc Include="VideoModificationPage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="RecordingDialog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

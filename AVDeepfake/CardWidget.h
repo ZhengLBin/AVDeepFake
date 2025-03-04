@@ -18,8 +18,6 @@ signals:
     void cardClicked(int cardId); // 信号：表示卡片被点击
 
 protected:
-    void enterEvent(QEvent* event) override;
-    void leaveEvent(QEvent* event) override;
     void mousePressEvent(QMouseEvent* event) override;
 
 private:
