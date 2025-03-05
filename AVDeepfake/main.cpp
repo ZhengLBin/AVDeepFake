@@ -1,4 +1,4 @@
-#include "AVDeepfake.h"
+ï»¿#include "AVDeepfake.h"
 #include <QtWidgets/QApplication>
 #include <QFont>
 #include <QGraphicsView>
@@ -9,24 +9,24 @@ int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
 
-    // ÉèÖÃÈ«¾Ö×ÖÌåÎªºÚÌå
-    QFont font("SimHei");  // ÉèÖÃ×ÖÌåÎªºÚÌå
+    // è®¾ç½®å…¨å±€å­—ä½“ä¸ºé»‘ä½“
+    QFont font("SimHei");  // è®¾ç½®å­—ä½“ä¸ºé»‘ä½“
     font.setStyleHint(QFont::SansSerif);
     a.setFont(font);
 
-    // ´´½¨Ö÷½çÃæ´°¿Ú
+    // åˆ›å»ºä¸»ç•Œé¢çª—å£
     AVDeepfake w;
 
 #if __arm__
-    // Ê¹ÓÃ QGraphicsView ½øÐÐÐý×ª
+    // ä½¿ç”¨ QGraphicsView è¿›è¡Œæ—‹è½¬
     QGraphicsScene* scene = new QGraphicsScene;
     QGraphicsProxyWidget* proxy = scene->addWidget(&w);
-    //proxy->setRotation(270);  // ÄæÊ±ÕëÐý×ª 90¡ã
+    proxy->setRotation(270);  // é€†æ—¶é’ˆæ—‹è½¬ 90Â°
 
     QGraphicsView* view = new QGraphicsView(scene);
-    view->resize(720, 1280); // µ÷ÕûÊÓÍ¼´óÐ¡
+    view->resize(720, 1280); // è°ƒæ•´è§†å›¾å¤§å°
 
-    // È¥³ý¹ö¶¯Ìõ
+    // åŽ»é™¤æ»šåŠ¨æ¡
     view->setRenderHint(QPainter::Antialiasing);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

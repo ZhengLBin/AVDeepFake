@@ -1,4 +1,4 @@
-#include "RecordingDialog.h"
+ï»¿#include "RecordingDialog.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -15,33 +15,33 @@
 RecordingDialog::RecordingDialog(QWidget* parent)
     : QDialog(parent)
 {
-    // ´°¿ÚÉèÖÃ
-    setWindowTitle(u8"Â¼ÒôÖÐ");
+    // çª—å£è®¾ç½®
+    setWindowTitle(u8"å½•éŸ³ä¸­");
     setFixedSize(500, 500);
     setWindowFlags(Qt::Popup);
 
-    // ³õÊ¼»¯Â¼ÒôÆ÷
+    // åˆå§‹åŒ–å½•éŸ³å™¨
     audioRecorder = new QAudioRecorder(this);
     initAudioRecorder();
 
-    // ¼ÆÊ±Æ÷
+    // è®¡æ—¶å™¨
     timer = new QTimer(this);
-    timer->setInterval(10); // 10ºÁÃë¸üÐÂÒ»´Î
+    timer->setInterval(10); // 10æ¯«ç§’æ›´æ–°ä¸€æ¬¡
     connect(timer, &QTimer::timeout, this, &RecordingDialog::updateTimer);
 
-    // Ö÷²¼¾Ö
+    // ä¸»å¸ƒå±€
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
-    // Ê±¼äÏÔÊ¾
+    // æ—¶é—´æ˜¾ç¤º
     timeLabel = new QLabel("00:00.00");
     timeLabel->setStyleSheet("font-size: 32px; color: #409EFF;");
     timeLabel->setAlignment(Qt::AlignCenter);
     mainLayout->addWidget(timeLabel);
 
-    // °´Å¥ÇøÓò
+    // æŒ‰é’®åŒºåŸŸ
     QHBoxLayout* buttonLayout = new QHBoxLayout();
 
-    // ¿ªÊ¼/ÔÝÍ£°´Å¥
+    // å¼€å§‹/æš‚åœæŒ‰é’®
     toggleButton = new QPushButton();
     toggleButton->setIcon(QIcon(":/AVDeepfake/startRecord"));
     toggleButton->setCursor(Qt::PointingHandCursor);
@@ -49,7 +49,7 @@ RecordingDialog::RecordingDialog(QWidget* parent)
     toggleButton->setStyleSheet("QPushButton { border: none; }");
     connect(toggleButton, &QPushButton::clicked, this, &RecordingDialog::toggleRecording);
 
-    // Í£Ö¹°´Å¥
+    // åœæ­¢æŒ‰é’®
     stopButton = new QPushButton();
     stopButton->setIcon(QIcon(":/AVDeepfake/endRecord"));
     stopButton->setCursor(Qt::PointingHandCursor);
@@ -67,7 +67,7 @@ RecordingDialog::RecordingDialog(QWidget* parent)
 
 void RecordingDialog::initAudioRecorder()
 {
-    // ÉèÖÃÒôÆµ¸ñÊ½
+    // è®¾ç½®éŸ³é¢‘æ ¼å¼
     QAudioEncoderSettings audioSettings;
     audioSettings.setCodec("audio/pcm");
     audioSettings.setSampleRate(16000);
@@ -90,22 +90,22 @@ void RecordingDialog::toggleRecording()
 
 void RecordingDialog::startRecording()
 {
-    // Éú³ÉÎÄ¼þÃû
+    // ç”Ÿæˆæ–‡ä»¶å
     QString fileName = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss") + ".wav";
     QString savePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
         + "/recordings/" + fileName;
 
-    // ´´½¨Ä¿Â¼
+    // åˆ›å»ºç›®å½•
     QDir().mkpath(QFileInfo(savePath).absolutePath());
 
     audioRecorder->setOutputLocation(QUrl::fromLocalFile(savePath));
     audioRecorder->record();
 
-    // ¸üÐÂ×´Ì¬
+    // æ›´æ–°çŠ¶æ€
     isRecording = true;
     toggleButton->setIcon(QIcon(":/AVDeepfake/stopRecord"));
 
-    recordTimer.start();  // Ê¹ÓÃ QElapsedTimer Æô¶¯¼ÆÊ±
+    recordTimer.start();  // ä½¿ç”¨ QElapsedTimer å¯åŠ¨è®¡æ—¶
     timer->start();
 }
 
@@ -125,13 +125,13 @@ void RecordingDialog::stopRecording()
         savedFilePath = audioRecorder->outputLocation().toLocalFile();
         emit recordingSaved(savedFilePath);
     }
-    accept(); // ¹Ø±Õ¶Ô»°¿ò
+    accept(); // å…³é—­å¯¹è¯æ¡†
 }
 
 void RecordingDialog::updateTimer()
 {
-    qint64 elapsed = recordTimer.elapsed();  // Ê¹ÓÃ QElapsedTimer »ñÈ¡¾­¹ýµÄÊ±¼ä
+    qint64 elapsed = recordTimer.elapsed();  // ä½¿ç”¨ QElapsedTimer èŽ·å–ç»è¿‡çš„æ—¶é—´
     QTime time(0, 0, 0, 0);
     time = time.addMSecs(elapsed);
-    timeLabel->setText(time.toString("mm:ss.zzz").left(7)); // ÏÔÊ¾Îª00:00.00
+    timeLabel->setText(time.toString("mm:ss.zzz").left(7)); // æ˜¾ç¤ºä¸º00:00.00
 }
